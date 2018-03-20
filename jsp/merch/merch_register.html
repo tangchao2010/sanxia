@@ -1,0 +1,784 @@
+﻿<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>商户注册</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">  <!--删除默认的苹果工具栏和菜单栏-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> <!-- 控制状态栏显示样式-->
+    <meta name="format-detection" content="telephone=no" /> <!--禁止拨打电话-->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sm/sm.min.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sm/mystyle.css">
+    <style>
+		.close-popup {
+			position: absolute;
+			top: -1rem;
+			right: 0;
+			margin:-.6rem .7rem 0  0;/*-.6rem .7rem 0 */
+			z-index: 999999;
+			width: 1.2rem;
+			height: 1.2rem;
+			background: url(<%=request.getContextPath()%>/img/wcb/merch_close.png) no-repeat;
+			background-size: contain;
+		}
+		
+		.merch_checkbox:checked {
+			border: #007bc8;
+			background: #007bc8 url(<%=request.getContextPath()%>/img/wcb/merch_checkbox.png) no-repeat center;
+			background-size: 90%;
+		}
+		.merch_checkbox {
+			width: .7rem;
+			height: .7rem;
+			border-radius: .08rem;
+			border: 1px solid #dcdcdc;
+			background: #FFF;
+		}
+		.list-block .szprove{
+			font-size: .68rem;
+		}
+		.list-block .arrowdown{
+			background: url(<%=request.getContextPath()%>/img/wcb/arrowdown.png) no-repeat;
+			background-size:auto .54rem;
+			background-position:right;
+			padding-right:1.35rem;
+		}
+		.bcnumb_box{ position:fixed; z-index: 99}
+    </style>
+	</head>
+	<body >
+    <div class="page-group">
+        <div class="page page-current" id="page-1493199338427"  >
+            <header class="bar bar-nav">
+                <a class="icon icon-left pull-left back"></a>
+                <h1 class="title">商户注册</h1>
+            </header>
+            
+			<div class="content native-scroll">
+                <form id="defaultForm" method="post" action="<%=request.getContextPath()%>/Merch/register">
+                    <div class="content-block-title">代理商和推荐人</div>
+
+                    <input type="hidden" name="flog" id="flog" />
+                    <input type="hidden" name="tg_force_on_off" value="${tg_force_on_off}" />
+                    <input type="hidden" name="tg_on_off" value="${tg_on_off}" />
+                    <input type="hidden" name="oemid" value="${oemid}" />
+                    <input type="hidden" name="openid" value="${openid}" />
+                    <input type="hidden" name="phoneNo" value="${phoneNo}" />
+                    <input type="hidden" name="password" value="${password}" />
+                    <input type="hidden"  id = "orgmrchname"   name="orgmrchname" value="${tjmrchname}" />
+                    <input type="hidden"  id = "qrcode"   name="qrcode" value="${qrcode}" />
+
+                    <div class="list-block">
+                        <ul>
+                            <li class="item-content">
+                                    <div class="item-media"></div>
+                                    <div class="item-inner">
+                                        <div class="item-title" style="width:66%;">推荐人手机号码</div>
+                                       <div class="item-input myregister">
+                                            <input type="tel" id="agentId" name="agentId" value = "${tjmrchphone}" maxlength="11"  placeholder="推荐人手机号码"  >
+                                       </div>
+                                    </div>
+                            </li>
+                            <li class="item-content">
+                                    <div class="item-inner">
+                                       <div class="item-input myregister">
+                                       	<input type="text" readonly value="${tjmrchname}bbbb"  id = "tjmrchname"  name="tjmrchname" />
+                                       </div>
+                                    </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content-block-title">商户基本信息</div>
+                    <div class="list-block">
+                        <ul>
+                            <li class="item-content">
+                                    <div class="item-media"></div>
+                                    <div class="item-inner">
+                                       <div class="item-title label">商户名称</div>
+                                       <div class="item-input myregister">
+                                            <input  type="text" id="merch_merchantname" name="merchName" value="" placeholder="商户名称：个体户+姓名或营业执照名称" >
+                                       </div>	
+                                    </div>
+                            </li>
+                            <!--<li class="item-content ">
+                                    <div class="item-media"></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">地区</div>
+                                        <div class="item-input myregister">
+                                            <input type="text" id="city-picker" name="merch_region" value="" placeholder="请选择地区" readonly>
+                                       </div>
+                                    </div>
+                            </li>-->
+
+                            <li class="item-content ">
+                            	<div class="item-media"></div>
+                            	<div class="item-inner">
+                            		<div class="item-title label">所在省</div>
+                           			<div class="item-input wcnd">
+                                    	<select dir="rtl" class="szprove arrowdown" id="proviceCode" name="proviceCode">
+                                        	<option></option>
+                                        </select>
+                                        <input type="hidden" name="proviceName" value=""/>
+                                    </div>
+                                    <!--<span class="icon icon-down" style="margin-left:.3rem;"></span>-->
+                            	</div>
+                            </li>
+                            <li class="item-content ">
+                            	<div class="item-media"></div>
+                            	<div class="item-inner">
+                            		<div class="item-title label">所在市</div>
+                           			<div class="item-input ">
+                                    	<select dir="rtl" class="szprove arrowdown" id="regionCode" name="regionCode" >
+                                        	<option></option>
+                                        </select>
+                                        <input type="hidden" name="regionName" value=""/>
+                                    </div>
+                            	</div>
+                            </li>
+                            <li class="item-content ">
+                                <div class="item-media"></div>
+                                <div class="item-inner">
+                                    <div class="item-title label">详细地址</div>
+                                    <div class="item-input myregister">
+										<input type="text" id="merchAddr" name="merchAddr" value="" placeholder="请输入详细地址" >
+                                   </div>
+                                </div>
+                        	</li> 
+                            <li class="item-content">
+                                    <div class="item-media"></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label" >联系电话</div>
+                                       <div class="item-input myregister">
+                                            <input type="tel" id="linkphone" name="linkphone" readonly value="${phone}" placeholder="联系电话"  >
+                                       </div>
+                                    </div>
+                            </li>                      
+                        </ul>
+                    </div>
+                    <div class="content-block-title">银行账号信息</div>
+                    <div class="list-block">
+                        <ul>
+                            <li class="item-content">
+                                    <div class="item-media"></div>
+                                    <div class="item-inner">
+                                       <div class="item-title label">身份证号码</div>
+                                       <div class="item-input myregister">
+                                            <input type="tel" id="identitycard" name="identitycard" value="" onkeyup="this.value=this.value.replace(/[, ]/g,'')"  placeholder="请输入身份证号码"  >
+                                       </div>
+                                    </div>
+                            </li>
+                            <li class="item-content ">
+                                    <div class="item-media"></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">开户姓名</div>
+                                        <div class="item-input myregister">
+                                            <input type="text" id="linkname" name="linkname"  value="" placeholder="请输入开户姓名">
+                                       </div>
+                                    </div>
+                            </li>
+                            <!--<li class="item-content ">
+                                    <div class="item-media"></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">选择开户行</div>
+                                        <div class="item-input myregister">
+                                            <input type="text" id="bankNo" name="bankNo"  value="" placeholder="请选择开户行"  >
+                                       </div>
+                                       <input type="hidden" name="bankName" value=""/>
+                                    </div>
+                           </li> -->
+                           <li class="item-content ">
+                            	<div class="item-media"></div>
+                            	<div class="item-inner">
+                            		<div class="item-title label">开户银行</div>
+                           			<div class="item-input">
+                                    	<select dir="rtl" class="szprove arrowdown" id="bankNo" name="bankNo" >
+                                        	<option></option>
+                                        </select>
+                        				<input type="hidden" name="bankName" value=""/>
+                                    </div>
+                            	</div>
+                            </li>
+                           <li class="item-content">
+                                    <div class="item-media"></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label" >银行卡号</div>
+                                       <div class="item-input myregister">
+                                            <input  type="tel"  id="accountNo" name="accountNo" value="" onkeyup="this.value=this.value.replace(/[, ]/g,'')" placeholder="请输入银行卡号"  >
+                                       </div>
+                                    </div>
+                            </li>
+                            <li class="item-content">
+                                    <div class="item-media"></div>
+                                    <div class="item-inner">
+                                        <div class="item-title" style="width:66%;">开户所填手机号</div>
+                                       <div class="item-input myregister">
+                                            <input type="tel" id="accountName" name="accountName" value="" onkeyup="this.value=this.value.replace(/[, ]/g,'')" maxlength="11"  placeholder="请输入开户手机号"  >
+                                       </div>
+                                    </div>
+                            </li>                       
+                        </ul>
+                    </div>
+                    
+                    <div style=" margin:1.2rem 0rem 0rem .7rem;">
+                    	<input type="checkbox" onclick="checkProtocol()"  class="input_reset merch_checkbox" checked="checked">
+                        <span>服务协议<a href="#" class="open-about">点击阅读协议</a></span>
+                    </div>
+                	<div class="content-block">
+                        <div class="row">
+                            <div class="col-100"><button onclick="merchSubmit()" type="button" class="button button-block button-fill button-big ">提交注册</button></div>
+                        </div>
+					</div>
+                    
+            	</form>
+                <div id="key" class="bcnumb_box" style="display:none; z" >
+                        <div class="bcxiaq_tb"> <img src="<%=request.getContextPath()%>/img/wcb/jftc_14.png" height="10"> </div>
+                        <ul id="keyboard" class="bcnub_ggg">
+                            <li class="symbol"><a>1</a></li>
+                            <li class="symbol"><a class="bczj_x">2</a></li>
+                            <li class="symbol"><a>3</a></li>
+                            <li class="symbol"><a>4</a></li>
+                            <li class="symbol"><a class="bczj_x">5</a></li>
+                            <li class="symbol"><a>6</a></li>
+                            <li class="symbol"><a>7</a></li>
+                            <li class="symbol"><a class="bczj_x">8</a></li>
+                            <li class="symbol"><a>9</a></li>
+                            <li class="symbol"><a>X</a></li>
+                            <li class="symbol"><a class="bczj_x">0</a></li>
+          					<li class="delete"><span class="bcdel symbol"><img  src="<%=request.getContextPath()%>/img/wcb/jftc_18.png"></span></li>
+                        </ul>
+                    </div>
+			</div>
+            
+		</div>  
+    </div>
+	<!--弹框-->
+	<div class="popup popup-about" style=" ">
+		<div class="content-block" style=" padding:0 .6rem; height: 100%; overflow-y: scroll; margin:0; font-size:.7rem; ">
+			<p style=" text-align:center; font-size:bold; font-size:.9rem; color:#1a1a1a;">三夏云平台用户注册服务协议</p><br/>
+			<p><a href="#" class="close-popup"></a></p>
+			<p>本《三夏云支付服务协议》（以下简称“本协议”），是客户（个人或单一实体，以下或称“您”）与代理商之间的协议。</p><br/>
+			<b>第一章 定义</b><br/><br/>
+            <p>
+            第一条“网站”指的是为客户提供的商户操作平台，包括所有在上述域名下的页面内容，但不包括上述页面中以文字、图片或其他形式所设的对外链接网站或网页内容。
+            </p> <br/>
+            <p>
+            第二条 “系统”（下称“本系统”）包括计算机软件，并可能包括相关网络服务器、网站（包括但不限于网络官方网站）、电子媒体、印刷材料和“联机”或电子文档。您一旦安装、复制、访问网站、充值、支付、运行软件或以其它方式使用“本系统”，即表示您同意接受本协议各项条款的约束。如您不同意本协议中的条款，请不要以上述任何一种方式使用“本系统”。
+            </p><br/>
+            <p>
+            第三条 “账户”指的是您使用服务时，向您提供的账户编号，您可以自行设置或更换密码，并实现本服务的各项具体功能。
+            </p> <br/>
+            <p>
+            第四条 “服务”（下称“本服务”）指的是由向您提供的通过系统在您和收款人之间转移货币资金提供的服务。
+            </p> <br/>
+            <b>第二章 声明</b><br/><br/>
+            <p>
+            第五条 在此特别提醒您认真阅读本协议的全部条款，特别是其中免除或者限制责任的免责声明条款（该等条款通常含有“不负任何责任”、“无义务”等词汇），和其它限制客户权利的条款（该等条款通常含有“不得”等词汇）。这些条款应在中华人民共和国（以下简称“中国”）法律法规所允许的范围内适用。除非客户接受本协议的全部条款，否则无权使用本服务。
+            </p> <br/>
+            <p>
+            第六条 本协议项下的条款可由在必要时单方面变更，并提前30日以网站公告的方式予以公布，无须另行单独通知您，您须定期查阅本协议。变更后的协议条款经提前30日公告后即有效代替原来的协议。如您不同意对本协议的所作的任何变更，您应立即停止使用本服务。如您在本协议内容公告变更后继续使用本服务的，即视作您已完全同意变更后的协议。
+            </p><br/>
+            <p>
+            第七条 特别申明，在您同意接受本协议并注册成为用户时，您具有中华人民共和国法律规定的完全民事权利能力和民事行为能力，能够独立承担民事责任的自然人、法人或其他组织；如您所属的国家或地区排除本协议内容的全部或部分，您应立即终止注册或停止使用本服务。
+第四条 “服务”（下称“本服务”）指的是由向您提供的通过系统在您和收款人之间转移货币资金提供的服务。
+            </p> <br/>
+            <b>第三章 账户的注册</b><br/><br/>
+            <p>
+            第八条 在使用本服务前，您必须先注册成为用户，您应同意以下事项：
+            </p> <br/>
+            <p>
+            （一）您必须依服务注册表的提示提供您本人真实、准确、最新及完整的资料。
+            </p>
+            <p>
+            （二）有权审查您所提供的信息是否真实、有效。若您提供任何错误、虚假、过时或不完整的资料，或者有合理的理由怀疑资料为错误、虚假、过时或不完整，有权暂停或终止向您提供全部或部分本服务。对此不承担任何责任，您将承担因此所产生的损失及责任。
+            </p>
+            <p>
+            （三）若因您未及时更新基本资料，导致本服务无法提供或提供时发生任何错误，您不得将此作为取消交易或拒绝付款的理由，且您将承担因此产生的一切后果，不承担责任。
+            </p><br/>
+           
+            <b>第四章 本服务使用规则</b><br/><br/>
+            <p>
+            第九条 本服务使用规则：
+            </p>
+            （一）一旦您注册成为客户，并选择使用本服务，则视为您授权在您及（或）对方符合指定条件或状态时，支付款项给您所指定的对象，或收取您指定人支付给您的款项。
+            </p>
+            （二）您确认，您在网站按本服务公示的服务流程向发出的指令，都不可撤回或撤销。您同意有权按照有关指令依据本协议对款项进行处理。
+            </p>
+            （三）会将您使用本服务暂留在账户内的资金，与自有营运资金完全独立开来，且不会将该资金用于您指示以外的其它用途。
+            </p>
+            <p>
+            （四）您了解并非银行或金融机构，本服务也并非金融业务，本协议项下的资金转移均通过银行实现，您认同资金于途中流转的时间在合理范围内。
+            </p>
+            （五）您同意，无需对您使用本服务期间由保管或代收代付的款项的贬值风险及孳息损失承担责任。
+            </p>
+            （六）如您需要注销您的账户，应提交相关申请并经过审核同意。注销您的账户，即表明与您之间的协议已解除，但您仍应对您使用本服务期间的行为承担可能的违约或损害赔偿责任，同时仍可保留您的相关信息及记录。
+            </p>
+            （七）款项专属：若您不使用保管于账户的款项，将会妥善保管，除本协议另有约定外，不作任何其他非您指示的用途。
+            </p> <br/>
+            <p>
+            第十条 交易风险。当您通过本服务进行各项交易时，若您或对方未遵从本协议或支付网站说明中的操作指示，不保证交易会顺利完成，且不承担由此产生的损害赔偿责任。若因上述状况致使款项已先行汇入您或他人的账户，您同意有权直接自相关账户余额中扣回款项，及拒绝您要求支付此笔款项的指示。此款项若已汇入您的银行账户，您同意有权向您事后追索。
+            </p><br/>
+            <b>第五章 服务费用</b><br/><br/>
+            <p>
+             第十一条 保留制订及调整服务费的权利，具体服务费用以在营业场所或网站上公示的收费方式为准。
+            </p>
+            <p>
+             第十二条 您同意，除非另有约定，您同意有权自您委托代管、代收或代付的款项中直接扣除上述服务费用。
+            </p><br/>
+            <b>第五章 服务费用</b><br/><br/>
+            <p>
+            第十三条 保留制订及调整服务费的权利，具体服务费用以在营业场所或网站上公示的收费方式为准。
+            </p>
+            <p>
+            第十四条 您同意，除非另有约定，您同意有权自您委托代管、代收或代付的款项中直接扣除上述服务费用。
+            </p><br/>
+            <b>第六章 使用限制</b><br/><br/>
+            <p>
+            第十五条 在使用本服务前，您必须先注册成为用户，您必须依服务注册表的提示，提供您本人真实、正确、最新及完整的资料。
+            </p>
+            <p>
+            第十六条 您了解并同意，为保障您账户资金安全，在您使用本服务时，包括但不限定于代付、退款、转账，需对您的身份进行一定的核实，同时对于账户资金的可使用额做出一定的限制。拥有制定及调整本服务限制规定的权利，具体规定以您使用有关服务时本网站上所规定为准。
+            </p><br/>
+            <p>
+            第十七条 您在使用本服务时，应遵守中国相关法令、您所在国家或地区之法令及相关国际惯例，不得将本服务用于任何非法目的（包括但不限于用于禁止或限制交易物品的交易），也不得利用本服务从事侵害他人合法权益之行为，否则有权中止或终止提供本服务，同时您应承担所有相关法律责任。若因此导致遭受损失的，您应承担赔偿责任。
+            </p>
+            <p>
+            第十八条 您了解并同意，有权基于单方面独立判断，包括但不限于认为您已经违反本协议的约定，暂停、中止或终止向您提供本服务之部份或全部功能。并将您的客户资料予以移除并删除。
+            </p>
+            <p>第十九条 您了解并同意，在发现异常交易或有疑义或有违法或违反本协议的嫌疑时，有权不经通知先行暂停或终止您的账户的使用，并拒绝您使用本服务之部份或全部功能。
+            </p><br/>
+            <b>第七章 账户及密码安全</b><br/><br/>
+            <p>
+            第二十条 您了解并同意，您将对使用账户及密码的一切行为负完全的责任，并同意：
+            </p>
+            <p>
+            第十六条 您了解并同意，为保障您账户资金安全，在您使用本服务时，包括但不限定于代付、退款、转账，需对您的身份进行一定的核实，同时对于账户资金的可使用额做出一定的限制。拥有制定及调整本服务限制规定的权利，具体规定以您使用有关服务时本网站上所规定为准。
+            </p><br/>
+            <p>
+            （一）妥善保管您的客户名和密码，您不可对其他任何人泄露您的账户及密码，对于因帐户或密码泄露所致的损失，由您自行承担。同时您保证不使用其他任何人的账户及密码。
+            </p>
+            <p>
+            （二）您如发现有他人冒用或盗用您的账户及密码或任何其他未经合法授权的情形时，应立即以有效方式通知，要求暂停对您帐户的服务。在收到有效通知后，将及时暂停对您帐户的服务，但对任何其他人使用您的帐户已发生之结果，除非可证明存在故意或重大过失，否则将不承担任何责任。并删除。
+            </p><br/>
+            <b>第八章 服务中断或故障</b><br/><br/>
+            <p>
+            第二十一条?本系统因下列状况无法正常运作，使您无法使用本服务时，不承担损害赔偿责任，该状况包括但不限于：
+            </p>
+            <p>
+            （一） 系统停机维护期间；
+            </p><br/>
+            <p>
+            （二） 电信设备出现故障不能进行数据传输的；
+            </p>
+            <p>
+            （三） 因台风、地震、海啸、洪水、停电、战争、恐怖袭击等不可抗力之因素，造成本系统障碍不能执行业务的。
+            </p>
+            <p>
+            （四） 由于黑客攻击、电信部门技术调整或故障、网站升级、银行方面的问题等原因而造成的服务中断或者延迟。
+            </p><br/>
+            <b>第九章 隐私权保护第二十二条 保护客户（特别是未成年人）的隐私是的一项基本政策，关于您的客户资料和其他特定资料将按照《隐私保护声明》《用户合法权益保障方案》受到保护，详细规定请参见《隐私保护声明》《用户合法权益保障方案》。</b><br/><br/>
+            <b>第十章 责任范围及责任限制</b><br/><br/>
+            <p>第二十三条?仅对本协议中所列明的义务承担责任。</p><br/>
+            <p>第二十四条 您明确因交易所产生的任何风险应由交易双方承担。</p><br/>
+            <p>第二十五条?客户信息是由客户自行提供，无法保证该信息的真实、准确和完整，您应对您的判断承担全部责任。</p><br/>
+            <p>第二十六条?不对交易标的及本服务提供任何形式的保证，包括但不限于以下事项：</p><br/>
+            <p>（一）本服务将符合您的需求；</p><br/>
+            <p>（二）本服务将不受干扰、及时提供或免于出錯；</p><br/>
+            <p>（三）您经由本服务交易或取得之任何产品、服务、资讯或其他资料将符合您的期望；</p><br/>
+            <p>（四）的合作单位，所提供的服务或产品品质及内容由该合作单位自行负责；</p><br/>
+            <p>（五）您经由本服务的使用下载或取得任何资料，应由您自行考量且自负风险，因资料的下载而导致您电脑系统的任何损坏或资料流失，不承担责任；</p><br/>
+            <p>（六）您自及工作人员或经由本服务取得的建议或资讯，无论其为书面或口头，均不构成对本服务的任何保证；</p><br/>
+            <p>（七）在法律法规允许的情况下，对于与本协议有关或由本协议引起的任何间接的、惩罚性的、特殊的、派生的损失（包括业务损失、收益损失、利润损失、使用数据或其他经济利益的损失），不承担责任；</p><br/>
+            <p>（八）除本协议另有规定外，在任何情况下，因本协议所承担的赔偿责任总额不超过向您收取的当次服务费用总额。</p><br/>
+            <b>第十一章 知识产权的保护</b><br/><br/>
+            <p>第二十七条 支付网站上所有内容，包括但不限于著作、图片、档案、资讯、资料、网站架构、网站画面的安排、网页设计，均由或其关联公司或其他权利人依法拥有其知识产权，包括但不限于商标权、专利权、著作权、商业秘密等。</p><br/>
+            <p>第二十八条 非经或其关联公司或其他权利人书面同意，任何人不得擅自使用、修改、复制、公开传播、改变、散布、发行或公开发表支付网站程序或内容。</p><br/>
+            <p>第二十九条 尊重知识产权是您应尽的义务，如有违反，您应对或其关联公司承担损害赔偿责任。</p><br/>
+            <b>第十二章 完整协议</b><br/><br/>
+            <p>第三十条 本协议由本协议条款与《隐私保护声明》《用户合法权益保障方案》等本网站公示的各项规则组成，相关名词可互相引用参照，如有不同理解，以本协议条款为准。</p><br/>
+            <p>第三十一条 您对本协议理解和认同，您即对本协议所有组成部分的内容理解并认同，一旦您使用本服务，您和即受本协议所有组成部分的约束。</p><br/>
+            <p>第三十二条 如果本协议部分内容被有管辖权的法院认定为违反法律规定的，不因此影响其他内容的效力。</p><br/>
+            <p>第十三章 本协议条款的解释、法律适用与管辖</p><br/>
+            <p>第三十三条 本协议条款的解释、效力及纠纷的解决，适用中国法律法规。如发生本协议相关条款与中国法律法规相抵触时，则该条款将按相关法律法规重新解释，而其他条款则依旧有效。</p><br/>
+            <p>第三十四条 本协议签订地位于上海市浦东新区。因本协议所引起的您与的任何纠纷或争议，首先应友好协商解决，协商不成的，您同意将纠纷或争议提交本协议签订地有管辖权的人民法院，即上海市浦东新区人民法院诉讼解决。</p><br/>
+            <b  style=" color:#000;">特 别 声 明</b><br /><br />
+            <p style=" color:#000; font-weight:bold;">鉴于：我国《合同法》第39条规定：采用格式条款订立合同的，提供格式条款的一方应当遵循公平原则确定当事人之间的权利和义务，并采取合理的方式提请对方注意免除或者限制其责任的条款，按照对方的要求，对该条款予以说明。</p>
+            <p style=" color:#000; font-weight:bold;">在此依法做出特别声明如下：</p><br />
+            <p style=" color:#000; font-weight:bold;">采取合理的方式提请用户注意的义务将通过如下方式实现：在本协议中以明确的足以引起用户注意的加重字体、斜体、下划线、颜色标记等合理方式提醒用户注意相关条款（需要强调的是，还包括用户应特别注意任何未明确标记的含有“不承担”、“免责不得”等形式用语的条款），该等条款的确认将导致用户在特定情况下的被动、不便、损失，请用户在确认同意本协议之前再次阅读上述条款。双方确认上述条款非属于《合同法》第40条规定的“免除其责任、加重对方责任、排除对方主要权利的”的条款，尊重用户的权利尤其是诉讼的权利，但作为全国运营的公司，在尊重用户诉讼权利的同时建议诉讼管辖地法院为所在地法院，而用户选择同意合同并使用服务即视为双方对此约定达成了一致意见。</p><br />
+            <p style=" color:#000; font-weight:bold;">用户如有任何需要说明条款的要求，请立即停止使用服务，同时立即致电 或发送邮件至info@snda.com，若用户未致电或发送有说明条款要求的邮件至而选择同意该协议，则双方在此确认已依法履行了根据用户要求对相关条款进行说明的法定义务，已给予用户充足的时间与充分的选择权来决定是否缔结本协议。</p><br />
+            <p style=" color:#000; font-weight:bold;">鉴于已依法明确了上述条款、履行了格式条款制订方的义务，用户点击同意或下一步，将被视为且应当被视为用户已经完全注意并同意了本协议所有条款尤其是提醒用户注意的条款的合法性及有效性，用户不应当以未对格式条款以合理方式提醒用户注意，或未根据用户要求尽到说明义务为理由而声称或要求法院或其它任何第三方确认相关条款非法或无效。</p><br />            
+		</div>
+	</div>
+    
+	<script type='text/javascript' src="<%=request.getContextPath()%>/js/sm/jquery-3.1.min.js" charset='utf-8'></script>
+	<script type='text/javascript' src="<%=request.getContextPath()%>/js/sm/mypublic.js" ></script>
+	<script type='text/javascript' src="<%=request.getContextPath()%>/js/sm/sm.min.js" ></script>
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/merch/index.js"></script>
+
+	<script type="text/javascript">
+		$('input[type="text"],input[type="tel"],textarea').on('click', function() {
+		  var target = this;
+		  setTimeout(function(){
+				target.scrollIntoViewIfNeeded();
+				console.log('scrollIntoViewIfNeeded');
+			  },400);
+		});
+	
+		$("#identitycard").click(function (e) {
+			document.activeElement.blur();
+            $(".bcnumb_box").slideDown(500);
+
+            $(document).one("click",function(){
+               $(".bcnumb_box").slideUp(500);
+            });
+
+            e.stopPropagation()
+        });
+		
+		$("#key").click(function (e) {
+            e.stopPropagation()
+        });
+		
+		$(".bcxiaq_tb").click(function(){
+			$(".bcnumb_box").slideUp(500);
+		});
+	</script>
+      <script type="text/javascript">
+		 $(function(){
+			$(".symbol").each(function(){
+				$(this).on("click",function(){
+					var newStr =$("#identitycard").val();
+					if($(this).text()==""){
+						newStr=newStr.substring(0,newStr.length-1);
+					}else{
+						newStr+=$(this).text();
+					}
+					$("#identitycard").val(newStr);
+					//$("#money").val(newStr);
+				})	
+			})
+		});
+    </script>
+
+     <script type="text/javascript">
+			var cP, cC;
+
+			function assignmentP() {
+				var mark = false;
+				$("#proviceCode option").each(function() {
+					var _this = $(this);
+					if(_this.text() == cP) {
+						mark = true;
+						$("#proviceCode").val(_this.val())
+						$("#proviceCode").trigger("change");
+					}
+				});
+				if(!mark)
+					setTimeout(assignmentP, 300);
+			}
+
+			function assignmentC() {
+				var mark = false;
+				$("#regionCode option").each(function() {
+					var _this = $(this);
+					if(_this.text() == cC) {
+						mark = true;
+						$("#regionCode").val(_this.val())
+						$("#regionCode").trigger("change");
+					}
+				});
+				if(!mark)
+					setTimeout(assignmentC, 300);
+			}
+
+			function assignment(province, city) {
+				cP = province;
+				cC = city;
+				assignmentP();
+				assignmentC();
+			}
+
+			function convertBaidu(point, callback) {
+				$.ajax({
+					type: "get",
+					url: "http://api.map.baidu.com/geoconv/v1/?coords=" + point.x + "," + point.y + "&ak=20YP42eTMDBoNG9Gg4jzfZ4ToG0DNTG4&output=json",
+					cache: false, //默认值true
+					dataType: "jsonp",
+					jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(默认为:callback)
+					jsonpCallback: "callback",
+					success: function(json) {
+						callback(json['result'][0]);
+					},
+					error: function(e, code) {
+						alert(code);
+					}
+				});
+			}
+			wx.config({
+				debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+				appId: '${appId}', // 必填，公众号的唯一标识
+				timestamp: '${timestamp}', // 必填，生成签名的时间戳
+				nonceStr: '${nonceStr}', // 必填，生成签名的随机串
+				signature: '${signature}', // 必填，
+				jsApiList: ['openLocation', 'getLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+			});
+			wx.ready(function() {
+				// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+				wx.getLocation({
+					type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+					success: function(res) {
+						var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+						var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+						var speed = res.speed; // 速度，以米/每秒计
+						var accuracy = res.accuracy; // 位置精度
+
+						convertBaidu({
+							x: longitude,
+							y: latitude
+						}, function(point) {
+							$.ajax({
+								type: "get",
+								url: "http://api.map.baidu.com/geocoder/v2/?ak=20YP42eTMDBoNG9Gg4jzfZ4ToG0DNTG4&location=" + point.y + "," + point.x + "&output=json&pois=0", //实际上访问时产生的地址为: ajax.ashx?callbackfun=jsonpCallback&id=10
+								cache: false, //默认值true
+								dataType: "jsonp",
+								jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(默认为:callback)
+								jsonpCallback: "callback",
+								success: function(json) {
+									var result = json['result']["addressComponent"];
+									assignment(result['province'], result['city']);
+									$("#merchAddr").val(result['district'] + result['street'] + result['street_number']);
+								},
+								error: function(e, code) {
+
+								}
+							});
+						});
+					}
+				});
+			});
+			wx.error(function(res) {
+				// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+				//alert("error: "+res);
+			});
+		</script> 
+       
+    <script  type="text/javascript">
+		/*$("#city-picker").cityPicker({
+			toolbarTemplate: 
+			'<header class="bar bar-nav">'+
+				'<button class="button button-link pull-right close-picker">'+'确定'+'</button>'+
+				'<h1 class="title">'+'选择所在区域'+'</h1>'+
+			'</header>'
+	  });*/
+	  
+		/*$("#bankNo").picker({
+			toolbarTemplate: 
+			'<header class="bar bar-nav">\
+		    	<button class="button button-link pull-left">按钮</button>\
+		    	<button class="button button-link pull-right close-picker">确定</button>\
+		    	<h1 class="title">标题</h1>\
+		  	</header>',
+		    cols: [
+				{
+				  textAlign: 'center',
+				  values: ['中国工商银行', '中国农业银行', '中国银行', '中国建设银行', '交通银行', '招商银行', '国家开发银行', '中国农业发展银行', '中国进出口银行', '平安银行', '中原银行', '华夏银行']
+				}
+		    ]
+		});*/
+	</script>
+    
+   <!-- <script type="text/javascript">
+     	//onkeyup="formatBankNo(this)" onkeydown="formatBankNo(this)"
+		function formatBankNo(BankNo1) {
+			if (BankNo1.value == "") return;
+			var accountNo = new String(BankNo1.value);
+			accountNo = accountNo.substring(0, 22); /*帐号的总数, 包括空格在内 */
+			if (accountNo.match(".[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{7}") == null) {
+				/* 对照格式 */
+				if (accountNo.match(".[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{7}|" + ".[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{7}|" +
+						".[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{7}|" + ".[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{7}") == null) {
+					var accountNumeric = accountChar = "",
+						i;
+					for (i = 0; i < accountNo.length; i++) {
+						accountChar = accountNo.substr(i, 1);
+						if (!isNaN(accountChar) && (accountChar != " ")) accountNumeric = accountNumeric + accountChar;
+					}
+					accountNo = "";
+					for (i = 0; i < accountNumeric.length; i++) { /* 可将以下空格改为-,效果也不错 */
+						if (i == 4) accountNo = accountNo + " "; /* 帐号第四位数后加空格 */
+						if (i == 8) accountNo = accountNo + " "; /* 帐号第八位数后加空格 */
+						if (i == 12) accountNo = accountNo + " "; /* 帐号第十二位后数后加空格 */
+						accountNo = accountNo + accountNumeric.substr(i, 1)
+					}
+				}
+			} else {
+				accountNo = " " + accountNo.substring(1, 5) + " " + accountNo.substring(6, 10) + " " + accountNo.substring(14, 18) + "-" + accountNo.substring(18, 25);
+			}
+			if (accountNo != BankNo1.value) BankNo1.value = accountNo;
+		}
+	</script>-->
+       
+	<script type="text/javascript">
+		//提交注册
+		function merchSubmit(){
+				if(checkBasicinfor() && checkBankacount()&&checkProtocol()){
+					//$("#defaultForm").submit();
+					$.showIndicator();
+					$.post("<%=request.getContextPath()%>/Merch/register",{
+						flog: $("input[name='flog']").val(), 
+						tg_force_on_off: $("input[name='tg_force_on_off']").val(),
+						tg_on_off: $("input[name='tg_on_off']").val(), 
+						oemid: $("input[name='oemid']").val(),
+						openid: $("input[name='openid']").val(), 
+						phoneNo: $("input[name='phoneNo']").val(),
+						password: $("input[name='password']").val(),
+						orgmrchname: $("input[name='orgmrchname']").val(), 
+						qrcode: $("input[name='qrcode']").val(), 
+						linkphone: $("input[name='linkphone']").val(), 
+						agentId: $("input[name='agentId']").val(), 
+						merchName: $("input[name='merchName']").val(), 
+						proviceCode: $("input[name='proviceCode']").val(),
+						regionCode: $("input[name='regionCode']").val(), 
+						proviceName: $("input[name='proviceName']").val(),
+						regionName: $("input[name='regionName']").val(),
+						merchAddr: $("input[name='merchAddr']").val(),
+						identitycard: $("input[name='identitycard']").val(),
+						linkname: $("input[name='linkname']").val(),  
+						bankNo: $("input[name='bankNo']").val(),
+						bankName: $("input[name='bankName']").val(),
+						accountNo: $("input[name='accountNo']").val(),
+						accountName: $("input[name='accountName']").val()
+					}, function(result) {
+						if(result['code'] == 0) {
+							if($("input[name='tg_on_off']").val()=='0'){
+								window.location.href = "../Merch/succeedSelect?oemid=" + $("input[name='oemid']").val()+"&orgCode="+result['orgCode']+"&openid="+$("input[name='openid']").val();
+							}else{
+								window.location.href = "../Merch/succeed?oemid=" + $("input[name='oemid']").val()+"&orgCode="+result['orgCode']+"&openid="+$("input[name='openid']").val();
+							}
+							
+						} else {
+							window.location.href = "../Merch/failed?oemid=" + $("input[name='oemid']").val()+"&orgCode="+result['orgCode']+"&openid="+$("input[name='openid']").val()+"&errdesc="+result['desc'];
+						}
+					}, 'json');
+				}
+				else{
+					return false;	
+				}
+		}
+			
+		//检查商户基本信息
+		function checkBasicinfor(){
+			var merch_merchantname = $('#merch_merchantname').val();
+			var proviceCode = $('#proviceCode').val();
+			//alert(proviceCode);
+			var regionCode = $("#regionCode").val();
+			//var merch_region = $('input[name=merch_region]').val();
+			var merchAddr = $('#merchAddr').val();
+			//var linkphone = $('#linkphone').val(); 
+			if(merch_merchantname == null || merch_merchantname == ""){
+				$.alert("请输入商户名称！");
+				return false;
+			}
+			if(proviceCode == '' || proviceCode == null){
+				$.alert("请选择省份");
+				return false;
+			}
+			if( regionCode == '' || regionCode == null){
+				$.alert("请选择城市！");
+				return false;
+			}
+			/*if(merch_region == null || merch_region == ""){
+				$.alert("请选择地区！");
+				return false;
+			}*/if(merchAddr == null || merchAddr == ""){
+				$.alert("请填写详细地址！");
+				return false;
+			}
+			/*if (linkphone == null || linkphone == "" ) { 
+				$.alert("请输入手机号码！");
+				return false;
+			}
+			if(!isMobile(linkphone)){
+				$.alert("手机号码格式不正确！");
+				return false;
+			}*/
+			else{
+				return true;
+			}
+		}
+			
+		//手机号格式判断 
+		/*function isMobile(object){
+			var pattern = /^1(3|4|5|7|8)\d{9}$/;
+			return pattern.test(object);
+		};	*/
+			
+		//检查银行账户信息
+		var checkBankacount = function() {
+			var identitycard = $("#identitycard").val();
+			var linkname = $("#linkname").val();
+			//var bankNo = $("input[name=bankNo]").val();
+			var bankNo =$("#bankNo").val();
+			var accountNo = $("#accountNo").val();
+			var accountName = $("#accountName").val();
+			
+			var re =  /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|[xX])$/;
+			var ree = /^1(3|4|5|7|8)\d{9}$/;
+			if (identitycard == null || identitycard == "") {
+				$.alert("请输入身份证号码");
+				return false;
+			}if(!re.test(identitycard) ){
+				$.alert("身份证格式不正确");
+				return false;
+			}if (linkname == null || linkname == "") {
+				$.alert("请输入开户姓名");
+				return false;
+			}if(bankNo==''){
+				$.alert("请选择开户行！");
+				return false;
+			}/*if (bankNo == null || bankNo == "") {
+				$.alert("请选择开户行");
+				return false;
+			}*/if (accountNo == null || accountNo == "") {
+				$.alert("请输入银行卡号");
+				return false;
+			}if(!isAccount(accountNo)){
+				$.alert("银行卡号格式不正确！");
+				return false;
+			}if (accountName == null || accountName == "") {
+				$.alert("请输入开户手机号");
+				return false;
+			}if(!ree.test(accountName)){
+				$.alert("手机号码格式不正确");
+				return false;
+			}else{
+				return true;
+			}
+		}
+		
+		function isAccount(object){
+			var patternz = /^\d{16}|\d{19}$/;
+			return patternz.test(object);
+		};
+		
+		//提交时服务条款
+			var  checkProtocol = function(){
+				var a = false;
+				var b = $(".input_reset").prop("checked");
+				if (true == b) {
+					a = true
+				} else {
+					$.alert("您必须同意服务条款后，才能提交注册")
+				}
+				return a
+			}
+	
+			$(document).on('click','.open-about', function () {
+				$.popup('.popup-about');
+			});
+		
+	</script>
+	</body>
+</html>

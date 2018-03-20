@@ -1,0 +1,73 @@
+@charset "utf-8";
+/*!
+ * pull to refresh v3.0
+ *author:wallace
+ *2015-10-15
+ *qq447363121
+ *陈国华
+ */
+#wrapper2 {
+	position: absolute;
+	z-index: 1;
+	height: 100%;
+	width: 100%;
+	background: #fafafa;
+}
+.scroller {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	padding: 0;
+}
+.scroller ul {
+	list-style: none;
+	margin: 0;
+	width: 100%;
+	text-align: left;
+}
+
+.pullDown, .pullUp {
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	font-size: 14px;
+	color: #262626;
+	font-family: Arial, Microsoft YaHei;
+	background-color: #fff;
+	border-bottom:solid 1px #ebebeb;
+}
+
+.pullDown .pullDownIcon {
+	display: none;
+	-webkit-transform: rotate(0deg) translateZ(0);
+	-moz-transform: rotate(0deg) translateZ(0);
+}
+.pullUp .pullUpIcon {
+	-webkit-transform: rotate(-180deg) translateZ(0);
+	-moz-transform: rotate(-180deg) translateZ(0);
+}
+.pullDown.flip .pullDownIcon {
+	-webkit-transform: rotate(-180deg) translateZ(0);
+	-moz-transform: rotate(-180deg) translateZ(0);
+}
+.pullUp.flip .pullUpIcon {
+	-webkit-transform: rotate(0deg) translateZ(0);
+	-moz-transform: rotate(0deg) translateZ(0);
+}
+
+@-webkit-keyframes loading {
+ from {
+-webkit-transform:rotate(0deg) translateZ(0);
+}
+to {
+	-webkit-transform: rotate(360deg) translateZ(0);
+}
+}
+@-moz-keyframes loading {
+ from {
+-moz-transform:rotate(0deg) translateZ(0);
+}
+to {
+	-moz-transform: rotate(360deg) translateZ(0);
+}
+}

@@ -1,0 +1,100 @@
+@charset "utf-8";
+ul.clara-menu
+{
+  list-style-type: none;
+  position:absolute;
+  cursor: pointer;
+  width:48px;
+  margin:0;
+  padding:0;
+  height:53px;
+}
+ul.clara-menu li{
+  background: #FFF;
+  overflow: hidden;
+  height: 48px;
+  width: 48px;
+  border-radius: 48px;
+  position: absolute;
+  left:0;
+ /* box-shadow: 1px 2px 2px 0 #aaa;*/
+  -webkit-transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.12);
+ transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.12);
+ border:1px solid #E69D44;
+}
+ul.clara-menu li img { 
+  width:100%;
+  height:100%;
+}
+
+ul.clara-menu li.selected
+{
+	z-index:10;
+	
+}
+ul.clara-menu li.options
+{
+	z-index:2;
+}
+ul.clara-menu.transition li.selected
+{
+	-webkit-transform: rotateZ(360deg) scale(0.8);
+		  transform: rotateZ(360deg) scale(0.8);
+}
+ul.clara-menu.transition li.options {
+  -webkit-transform: rotateZ(360deg);
+		  transform: rotateZ(360deg);
+ 
+}
+ul.clara-menu.transition.right li.options:nth-of-type(1) {
+  left: 65px;
+}
+ul.clara-menu.transition.right li.options:nth-of-type(2) {
+  left: 130px;
+}
+ul.clara-menu.transition.right li.options:nth-of-type(3) {
+  left: 195px;
+}
+ul.clara-menu.transition.right li.options:nth-of-type(4) {
+  left: 260px;
+}
+
+ul.clara-menu.transition.left li.options:nth-of-type(1) {
+  left: -65px;
+}
+ul.clara-menu.transition.left li.options:nth-of-type(2) {
+  left: -130px;
+}
+ul.clara-menu.transition.left li.options:nth-of-type(3) {
+  left: -195px;
+}
+ul.clara-menu.transition.left li.options:nth-of-type(4) {
+  left: -260px;
+}
+
+ul.clara-menu.transition.up li.options:nth-of-type(1) {
+  top: -65px;
+}
+ul.clara-menu.transition.up li.options:nth-of-type(2) {
+  top: -130px;
+}
+ul.clara-menu.transition.up li.options:nth-of-type(3) {
+  top: -195px;
+}
+ul.clara-menu.transition.up li.options:nth-of-type(4) {
+  top: -260px;
+}
+
+ul.clara-menu.transition.down li.options:nth-of-type(1) {
+  top: 65px;
+}
+ul.clara-menu.transition.down li.options:nth-of-type(2) {
+  top: 130px;
+}
+ul.clara-menu.transition.down li.options:nth-of-type(3) {
+  top: 195px;
+}
+ul.clara-menu.transition.down li.options:nth-of-type(4) {
+  top: 260px;
+}
+

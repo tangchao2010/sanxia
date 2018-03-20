@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>支付</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">  <!--删除默认的苹果工具栏和菜单栏-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> <!-- 控制状态栏显示样式-->
+	<link rel="stylesheet" href="../../css/sm/sm.min.css">
+	<link rel="stylesheet" href="../../css/sm/mystyle.css">
+    <style>
+    	.bar{ background:#0368b1;}
+		.bar .title{ color:#fff;}
+		.bar .icon{ color:#fff;}
+		.bar:after{ height:0;}
+		#pay_keyboard_l ul {
+    		width:inherit;
+		}
+		#pay_keyboard_l{
+			display:flex;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			-ms-flex-align: center;
+			-webkit-box-align: center;
+			box-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+			text-decoration: none;
+			justify-content:space-between;
+			-webkit-justify-content:space-between;
+		}
+		.gray_btnc{
+			background:#0368b1;
+		}
+		.gray_btnc button{
+			color:#fff;
+		}
+		.gray_btn {
+			background: #d9d9d9;
+		}
+		.gray_btn button{
+			color:#252626;
+		}
+		.wcb_payborder{ border: solid 1px #999}
+		 button{
+			-webkit-appearance: none;
+    		-moz-appearance: none;
+    		-ms-appearance: none;
+	    	appearance: none;
+			border:none;
+			text-decoration: none;
+			outline: none;
+			background: transparent;
+		}
+		#pay_sure button{
+			width:100%;
+			height:100%;
+		}
+    </style>
+	</head>
+	<body>
+	<div class="page-group">
+		<div class="page page-current">
+        	<header class="bar bar-nav">
+                <!--<a class="icon icon-left pull-left" onclick="javascript:history.go(-1)"></a>-->
+                <h1 class="title">支付</h1>
+            </header>
+            <div class="content">
+            
+            	<form id="formd"  action="../../QRCode/QRCodePay" name="zf">
+                	<input type="hidden" name="oemid" value="${oemid}"/>
+                    <input type="hidden" name="openid" value="${openid}"/>
+                    <input type="hidden" name="mrchorgcode" value="${mrchorgcode}"/>
+                    <input type="hidden" name="isweixinbrowse" value="${isweixinbrowse}"/>
+                    <input type="hidden" name="qrcode" value="${qrcode}"/>
+                    <input type="hidden" name="sign" value="${sign}"/>
+                    
+                    <input type="hidden" id = "money" name="money"  value="xxxx" />
+                
+                    <div class="inputpay_title">
+                        <span class="inputPay_top">
+                            <img id="sanxialogo" src="../../img/wcb/sanxialogob.png">
+                            <dl>
+                                <dd>您正在向商家</dd>
+                                <dt><a>&nbsp;${mrchname}&nbsp;</a>&nbsp;付款</dt>
+                            </dl>
+                            <div class="pay_open open-about"><img src="../../img/wcb/pay_arrow1.png"></div>
+                        </span>
+                    </div>
+                    <div class="content-block" >
+                   		<div id="wcb_pay" class="wcb_payborder">
+                            <p id="pay_num">￥&nbsp;<span id="inputMoney" style="color:#000"></span>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p id="error"></p>
+                        </div>  
+                    </div>
+
+                    <div id="pay_keyboard">
+                        <div  style=" font-size:.68rem; color:#999; text-align:center; height:1.8rem; line-height:1.8rem; background:#efeff4;">由<img style=" width:2.6rem;" src="../../img/wcb/tecsanxia.png">提供技术支持</div>
+                    	<div id="pay_keyboard_l" >
+                        	<ul class="pay_border">
+                            	<li  ontouchstart="input(this)" ontouchend="canceltouch(this)" class="b_num">1</li>
+                            	<li  ontouchstart="input(this)" ontouchend="canceltouch(this)" class="b_num">4</li>
+                            	<li  ontouchstart="input(this)" ontouchend="canceltouch(this)" class="b_num">7</li>
+                            </ul>
+                            <ul class="pay_border">
+                            	<li  ontouchstart="input(this)" ontouchend="canceltouch(this)" class="b_num">2</li>
+                            	<li  ontouchstart="input(this)" ontouchend="canceltouch(this)" class="b_num">5</li>
+                            	<li  ontouchstart="input(this)" ontouchend="canceltouch(this)" class="b_num">8</li>
+                            	<li  ontouchstart="input(this)" ontouchend="canceltouch(this)" class="b_num">0</li>
+                            </ul>
+                            <ul class="pay_border">
+                                <li  ontouchstart="input(this)" ontouchend="canceltouch(this)" class="b_num">3</li>
+                                <li  ontouchstart="input(this)" ontouchend="canceltouch(this)" class="b_num">6</li>
+                                <li  ontouchstart="input(this)" ontouchend="canceltouch(this)" class="b_num">9</li>
+                                <li  ontouchstart="input(this)" ontouchend="canceltouch(this)" class="b_num">.</li>
+                            </ul>
+						</div>
+                        <div id="pay_keyboard_r">
+                        	<ul>
+                            	<li ontouchstart="input(this)" ontouchend="canceltouch(this)" id="pay_del" class="pay_border b_num">
+                            		<img  src="../../img/wcb/pay_del.png">
+                                </li>
+                            	<li id="pay_sure"  class="gray_btn gray_btnc" onClick="submitvriefy()" ><button type="button"  >确认</button></li>
+                        	</ul>
+                    	</div>
+					</div>
+                    
+                     
+                    
+                </form>
+                
+            </div>
+        </div>
+    </div>	
+
+ 	<div class="popup popup-about" style=" ">
+		<p><a href="#" class="close-popup"></a></p>
+		<div class="content-block" style=" padding:0 .6rem; height: 100%; overflow-y: scroll; margin:0; font-size:.7rem; ">
+			<p style=" text-align:center; font-size:bold; font-size:.9rem; color:#1a1a1a; padding-top:4%;padding-bottom:4%; border-bottom: solid 1px #e3e3e3;">扫一扫，关注我们</p><br/>
+			<div class="pay_more">
+				<img  src="http://open.weixin.qq.com/qr/code/?username=${weixingzh}">
+			<p><a href="../../QRCode/shouyinyuanloginUI?orgCode=${mrchorgcode}&qrcode=${qrcode}" class="button button-fill" style="line-height:2.2rem; height:2.2rem;">收银员登录</a></p>            </div>
+		</div>
+	</div> 
+                    
+	<script type="text/javascript" src="../../js/sm/jquery-3.1.min.js"></script>
+    <script type="text/javascript" src="../../js/sm/mypublic.js"></script>
+    <script type="text/javascript" src="../../js/sm/sm.min.js"></script>
+
+    <script type="text/javascript">
+        var str = '';
+        var temp = '';
+        var pointflag = false;
+        var count = 0;
+        function canceltouch(obj) {
+            $(obj).css("background", "#ffffff");
+        }
+        function input(obj) {
+            str = $("#inputMoney").html();
+			
+			//alert(str);
+            $(".b_num").css("background", '#ffffff');
+            $(obj).css("background", "#d9d9d9");
+            temp = $(obj).text();
+			//alert(temp);
+			
+            //判断是否出现了小数点,若是有小数点，则小数点后面只能在输两位数字
+            if (temp == "." && pointflag == true) {
+                return false;
+            }
+			
+            if (temp == "." && pointflag == false) {
+                pointflag = true; //已经出现小数点了，将开关设为正
+            }
+			
+            var quedingfl;
+            //小数点后面只能有两位
+            //如果是退格
+            if ($(obj).attr("id") == "pay_del") {
+                if (str.substr(str.length - 1, 1) == ".") {
+                    pointflag = false;
+                    count = 0;
+                }
+                str = str.slice(0, -1);
+                //退格，但是不是小数点
+                if (pointflag == true) {
+                    if (count == 4) {
+                        count = count - 2;
+                    } else {
+                        count = count - 1;
+                    }
+                }
+                temp = '';
+            } else {
+                if (pointflag == true) {
+                    count++;
+                    if (count >= 4) {
+                        count = 4;
+                        return false;
+                    }
+                }
+                if (str == "0" && temp == "0") {
+                    return false;
+                }
+                str += temp;
+                quedingfl = parseFloat("0" + str);
+                if (quedingfl > 99999999.99) {
+                    return;
+                }
+                if (str == ".") {
+                    str = "0.";
+                }
+            };
+			
+            quedingfl = parseFloat("0" + str);
+            if (quedingfl != 0) {
+                if ($("#pay_sure").hasClass("gray_btnc")){
+                    $("#pay_sure").removeClass("gray_btn");
+                }
+				$(".wcb_payborder").css("border","solid 1px #0368b1");
+            } else {
+                if (!$("#pay_sure").hasClass("gray_btn")) {
+                    $("#pay_sure").addClass("gray_btn");
+                }
+				$(".wcb_payborder").css("border","solid 1px #999");
+            }
+			
+            //如果第一个输入的就是小数点，则自动变成0.
+            $("#inputMoney").html(str);
+			$("#money").val(str);
+        } 
+		
+		function submitvriefy(){
+			if ($("#inputMoney").text()==null || $("#inputMoney").text()==0 ){
+				//$.alert("请输入交易金额！");
+                alert(1);
+				return false;
+			}else{
+				$("#pay_sure button").html("支付中...");
+				$('#pay_sure button').attr("disabled");
+				window.location.href="../manage/managenew.html"
+				$.showIndicator();
+			}
+		}
+		
+		/*function submitvriefy(){
+			$('#pay_sure').attr('disabled', true);
+			$.ajax({
+				type:'',
+				url:'',
+				success: function(){
+					$('#pay_sure').attr('disabled', false);
+				}
+			});
+		}*/
+		
+		$(document).on('click','.open-about', function () {
+			$.popup('.popup-about');
+		});
+    </script>
+    
+       
+	<!--<script type="text/javascript">
+		$(function(){
+			 //下拉显示隐藏
+			$(".pay_arrow").click(function(){
+				$(".pay_ss").slideUp(500);
+			});
+			$(".pay_arrow").click(function(){
+				$(".pay_ss").slideDown(500);
+			});
+			 
+			$("#pay_keyboard .b_num").each(function(){
+				var obj = $(this);
+				obj.on("touchstart",function(){
+					obj.css("background","#e3e3e3");
+					setTimeout(function() {
+						obj.css('background', '#fff');
+					}, 100);
+				});
+
+				obj.on("touchend",function(){
+					var newStr = $("#inputMoney").text();
+					var regStrs = [
+					  ['^0(\\d+)$', '$1'], //禁止录入整数部分两位以上，但首位为0
+					  ['^\\.$', '0.'], //禁止第一个为点
+					  ['[^\\d\\.]+$', ''], //禁止录入任何非数字和点
+					  ['\\.(\\d?)\\.+', '.$1'], //禁止录入两个以上的点
+					  ['^(\\d+\\.\\d{2}).+', '$1'], //禁止录入小数点后两位以上
+					  ['^(\\d{100})(\\d?)$', '$1']//禁止录入金额大于一万
+					];
+					
+					//alert(obj.text());
+					if(obj.text() !=="" ){
+						newStr+=obj.text();
+						$("#wcb_pay").css("border","solid 1px #0368b1");
+						$("#pay_sure").css("background","#0368b1");
+						$("#pay_sure a").css("color","#fff");
+					}else{
+						$("#wcb_pay").css("border","solid 1px #e3e3e3");
+						$("#pay_sure").css("background","#e3e3e3");
+						$("#pay_sure a").css("color","#000");
+						//newStr=newStr.substring(0,newStr.length-1);
+					}
+					//alert(obj.text());
+					
+					$("#pay_del").on('click',function(){
+						if( newStr !="" ){
+							//newStr=obj.text() - newStr;
+							//newStr=newStr-obj.text();
+							//alert(newStr);
+							$('#inputMoney').text(0);
+							//alert(newStr);
+						}	
+					})	
+					
+					if (obj.text() == ".") {
+						obj.text() = "0.";
+					}
+			
+					for(i=0; i<regStrs.length; i++){
+						var reg = new RegExp(regStrs[i][0]);
+						newStr = newStr.replace(reg, regStrs[i][1]);
+					}
+					
+					$("#inputMoney").text(newStr);	
+					/*if(newStr==null||newStr==""){
+						$("#pay_sure").css("background","#e3e3e3");
+						return;
+					}else{
+						$("#pay_sure").css("background","#0368b1");
+						$("#pay_sure a").css("color","#fff");
+					}*/
+					
+				})	
+			})
+		});
+			function submitvriefy(){
+				if ($("#inputMoney").text()==null || $("#inputMoney").text()==0 ){
+					//$.alert("请输入交易金额！");
+					return false;
+				}else{
+					$("#formd").submit();
+				}
+			}
+			$(document).on('click','.open-about', function () {
+			$.popup('.popup-about');
+			
+		});
+	</script>-->
+ 
+	</body>
+
+</html>

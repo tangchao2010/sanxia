@@ -1,0 +1,41 @@
+html,body {
+	background: #E0DCE2;
+	height:100%; width:100%;
+	overflow-x: hidden;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB",
+		"Hiragino Sans GB W3", "Microsoft YaHei UI", "Microsoft YaHei",
+		"WenQuanYi Micro Hei", sans-serif;
+}
+
+.panel-gray {
+	border-color: #BCBBC1;
+	margin-top: 10px;
+}
+
+.panel-gray>.panel-heading {
+	color: #fff;
+	background-color: #fea502;
+	border-color: #fea502;
+}
+
+.button {
+	font-weight: 600;
+	width: 100%;
+}
+
+.control-label {
+	color: #626262;
+	font-weight: 600;
+}
+
+.container,.container-fluid {
+	padding: 0 10px;
+}
+
+.form-group {
+	margin: 6px 0;
+}
+
+.panel-body {
+	padding: 8px;
+}

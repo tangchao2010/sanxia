@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="renderer" content="webkit" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+	<title>提现</title>
+	<link href="../../css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../css/index.css" rel="stylesheet" />
+    <link href="../../css/wcbstyle.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../js/wechat/layer.m.js"></script>
+    <script>
+		(function () {
+			document.addEventListener('DOMContentLoaded', function () {
+				var html = document.documentElement;
+				var windowWidth = html.clientWidth;
+				html.style.fontSize = windowWidth / 7.5 + 'px';
+			}, false);
+		})();
+		var wAlert = window.alert;  
+		window.alert = function (message) {  
+			try {  
+				var iframe = document.createElement("IFRAME");  
+				iframe.style.display = "none";  
+				iframe.setAttribute("src", 'data:text/plain,');  
+				document.documentElement.appendChild(iframe);  
+				var alertFrame = window.frames[0];  
+				var iwindow = alertFrame.window;  
+				if (iwindow == undefined) {  
+					iwindow = alertFrame.contentWindow;  
+				}  
+				iwindow.alert(message);  
+				iframe.parentNode.removeChild(iframe);  
+			}  
+			catch (exc) {  
+				return wAlert(message);  
+			}  
+		}
+		
+    	function ajaxTCash(orgCode){
+    		$.ajax({
+    			url:"../../Manage/generateCashOrder",
+    			data:"orgCode="+orgCode,
+    			dataType:"json",
+    			type:"post",
+    			success:function(result){
+    				var code = result.code; //code为0时候为生成提现订单成功
+    				if(code=='0'){ //代表提现订单提交
+    					alert("您本次提现"+result.applyMoney+",手续费为"+result.cashFee+"元.提示：提现金额大于"+result.feeCondition+"元,不收取手续费");
+    				}else if(code=='1'){  //代表提现金额达不到提现最低标准
+    					alert("提现金额最小为"+result.minAmount+"元");
+    				}else if(code=='2'){
+    					alert("您今天已提现"+result.cashCount+"笔");
+    				}else if(code=='3'){
+    					alert("您有仍在处理中的提现申请,请稍后重试");
+    				}else if(code == '4'){
+    					alert(result.message);
+    				}else if(code == '5'){
+    					alert(result.message);
+    				}else if(code == '6'){
+    					alert(result.message);
+    				}else if(code == '7'){
+    					alert(result.message);
+    				}else{
+    					alert("提现异常,请联系系统管理员");
+    				}
+    				window.location.reload();
+    			}
+    		});
+    	}
+    	
+    	function ajaxTCashTG(orgCode){
+    		$.ajax({
+    			url:"../../Manage/generateCashOrderTG",
+    			data:"orgCode="+orgCode,
+    			dataType:"json",
+    			type:"post",
+    			success:function(result){
+    				var code = result.code; //code为0时候为生成提现订单成功
+    				if(code=='0'){ //代表提现订单提交
+    					alert("您本次提现"+result.applyMoney+",手续费为"+result.cashFee+"元.提示：提现金额大于"+result.feeCondition+"元,不收取手续费");
+    				}else if(code=='1'){  //代表提现金额达不到提现最低标准
+    					alert("提现金额最小为"+result.minAmount+"元");
+    				}else if(code=='2'){
+    					alert("您今天已提现"+result.cashCount+"笔");
+    				}else if(code=='3'){
+    					alert("您有仍在处理中的提现申请,请稍后重试");
+    				}else if(code == '4'){
+    					alert(result.message);
+    				}else if(code == '5'){
+    					alert(result.message);
+    				}else if(code == '6'){
+    					alert(result.message);
+    				}else if(code == '7'){
+    					alert(result.message);
+    				}else{
+    					alert("提现异常,请联系系统管理员");
+    				}
+    				window.location.reload();
+    			}
+    		});
+    	}
+
+	</script>
+    <style>
+		.ztcash_container{
+				
+		}
+		.ztcash_container li{
+			background:#fff;
+			margin-top:.3rem;
+			margin-bottom:.2rem;
+		}
+		.ztcash_container li .ztcash_titlez{
+			margin-left:.3rem;
+			margin-right:.3rem;
+		}
+		.ztcash_container li dl{
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-align: center;
+			-webkit-box-align: center;
+			box-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+			text-decoration: none;
+		}
+		.ztcash_li span{
+			font-size:.26rem;
+			color:#fff;
+			padding-left:.24rem;
+			padding-right:.24rem;
+			background:#ff7c7b;
+			border-radius:.42rem;
+			padding-top:.09rem;
+			padding-bottom:.07rem;
+			line-height:.4rem;
+		}
+		.ztcash_title{
+			padding-top:.2rem;
+			padding-bottom:.2rem;
+		}
+		.ztcash_container li dl dd{
+			width:50%;	
+		}
+		.ztcash_titlez dd{
+			display:block;
+			font-size:.24rem;
+			margin-left:.3rem;
+			color:#666;
+		}
+		.ztcash_titlez dd:nth-child(1){
+			border-right:solid 1px #e3e3e3;	
+		}
+		.ztcash_titlez dd a{
+			display:block;
+			font-size:.4rem;
+			padding-bottom:.12rem;
+			color:#f65926;
+		}
+		.ztcash_titlez dl{
+			padding-top:.3rem;
+			padding-bottom:.3rem;
+			border-top:solid 1px #e3e3e3;
+			border-bottom:	solid 1px #e3e3e3;
+		}
+		.ztcash_button{
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-align: center;
+			-webkit-box-align: center;
+			box-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+			text-decoration: none;
+		}
+		.ztcash_button button{
+			width:50%;	
+			margin:.3rem .3rem;
+			border-radius: 6px;
+			background:#fff;
+			border: solid 1px #e3e3e3;
+			height: .68rem;
+		}
+		.ztcash_button a{
+			width:50%;
+			text-align:center;
+			border: solid 1px #e3e3e3;
+			height: .68rem;
+			border-radius: 6px;
+			line-height:.68rem;
+			color:#000;
+			text-decoration:none;
+		}
+		.ztcash_button button:active{
+			background:#27af27;
+			color:#fff;	
+		}
+		.ztcash_button a:active{
+			background:#27af27;
+			color:#fff;	
+		}
+	 </style>
+</head>
+<body style="background:#f2f2f2">
+
+	<div class="container-fluid">
+		<div class="wcb_container">
+            <div style=" overflow:hidden;">
+            	<ul class="ztcash_container">
+                     <li class="ztcash_li">
+                     	<div class="ztcash_titlez">
+                        	<div class="ztcash_title">
+                        		<span>推广奖励金</span>
+                            </div>
+                             <dl>
+                             	<dd>
+                                	<a>20.00</a>可提现:
+                                </dd>
+                                <dd>
+                                	<a>200.00</a> 历史总计:
+                                 </dd>
+                             </dl>
+                             <div class="ztcash_button">
+                             	<a  href="../../Manage/tcashfrUI?orgCode=${orgnaization.baseOrgCode}&beginTime=&curPage=1&type=TG">历史明细</a>
+                                <button onclick="ajaxTCashTG('${orgnaization.baseOrgCode}');">提现</button>
+                             </div>
+                        </div>                      
+                    </li>
+                    
+                     <li class="ztcash_li">
+                     	<div class="ztcash_titlez">
+                        	<div class="ztcash_title">
+                        		<span style="background:#60f4a6;">分润</span>
+                            </div>
+                             <dl>
+                             	<dd>
+                                	<a>1000.00</a>可提现:
+                                </dd>
+                                <dd>
+                                	<a>20000.00</a> 历史总计:
+                                 </dd>
+                             </dl>
+                             <div class="ztcash_button">
+                             	<a  href="../../Manage/tcashfrUI?orgCode=${orgnaization.baseOrgCode}&beginTime=&curPage=1&type=FR">历史明细</a>
+                                <button  onclick="ajaxTCash('${orgnaization.baseOrgCode}');">提现</button>
+                             </div>
+                        </div>                      
+                    </li>
+                     
+                </ul>
+            </div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="../../js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../../js/wechat/layer.m.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap/bootstrap.min.js"></script>
+    
+ 	  	 <script>
+			$("#sucbutton").click(function(){
+				try{
+		            WeixinJSBridge.call("closeWindow");
+		        }catch(e){};
+			});
+		</script>
+</body>
+</html>

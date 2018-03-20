@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>提现</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta charset="UTF-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">  <!--删除默认的苹果工具栏和菜单栏-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> <!-- 控制状态栏显示样式-->
+	<link rel="stylesheet" href="../../css/sm/sm.min.css">
+	<link rel="stylesheet" href="../../css/sm/mystyle.css">
+    <style>
+		label.label-checkbox input[type=radio]:checked+.item-media i.icon-form-checkbox {
+			background-color: #0368b1;
+		}
+		.list-block .item-content{
+			padding-left:.75rem;
+		}
+		input:focus{ border:solid 1px red;}
+    </style>
+	</head>
+	<body>
+    <div class="page-group">
+		<div class="page page-current">
+        	<header class="bar bar-nav">
+                <a class="icon icon-left pull-left" onclick="javascript:history.back(-1);"></a>
+                <h1 class="title">提现</h1>
+            </header>
+			<div class="content">
+            	<form id="formid" method = "post"  action = "" >
+               		<div class="list-block mymoneyrtop">
+                    	<div style="font-size:.8rem; color:#252626; padding-bottom:.75rem;">提现金额（元）</div>
+                        <div class=" mymoneyrinput"><input id="cashmoney" onKeyUp="amount(this)" type="tel" maxlength="8"></div>
+                        <span>可提现金额：<em id="kcextract">123456.78</em>&nbsp;元&nbsp;;&nbsp;到帐金额：&nbsp;<em id="dzaccount"></em>&nbsp;元，手续费：<em id="poundage">2</em>元</span>
+                    </div>
+               
+					<div class="list-block moneyextr" style=" margin-top:.75rem;">
+                        <dl>
+                            <dt>温馨提示：</dt>
+                            <dd>1、单笔提现金额最低不能少于&nbsp;<em>50</em>&nbsp;元, 最高不能超过&nbsp;<em>50000</em>&nbsp;元。</dd>
+                            <dd>2、业务受理时间为 星期一、星期二 的&nbsp;9点~18点&nbsp;。</dd>
+                            <dd>3、每日提现资料为&nbsp;<em>1</em>&nbsp;次。</dd>
+                            <dd>4、单笔手续费为&nbsp;<em>2</em>&nbsp;元。</dd>
+                            <dd>5、确保您的结算信息，如银行账号、姓名、银行预留电话真实，若因您个人填写信息错误而导致的损失，平台不予承担。</dd>
+                            <dd>6、平台禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用。</dd>
+                        </dl>
+					</div>
+                      
+					<div class="content-block mybutton">
+                        <div class="row">
+                            <a href="javascript:;">
+                                <div class="col-100">
+                                    <button onclick="gopay('${orgnaization.baseOrgCode}')" type="button" class="button button-block button-fill button-big prompt-title-ok">去提现</button>
+                                 </div>
+                            </a>
+                        </div>
+					</div>
+                </form>
+          
+			</div>
+		</div>
+	</div>	
+
+	<script type="text/javascript" src="../../js/sm/jquery-3.1.min.js"></script>
+    <script type="text/javascript" src="../../js/sm/mypublic.js"></script>
+    <script type="text/javascript" src="../../js/sm/sm.min.js"></script>
+
+	<script>
+		$('#cashmoney').bind('input propertychange', function() {
+			var poundage = Number($("#poundage").html());
+        	var str = Number($('#cashmoney').val()-poundage);
+			if(str>poundage){
+				$("#dzaccount").html(str);
+			}else{
+				$("#dzaccount").html("提现金额不能少"+poundage+"于");	
+			}
+        });
+	
+	
+		function gopay(){
+			var cashmoney = $("#cashmoney").val();
+			var kcextract = $("#kcextract").html();
+			var pay_code=$("input[name='pay-radio']:checked").val();
+					
+			if(cashmoney == ''){
+				$.alert("请输入提现金额");
+				return false;	
+			}
+			if(cashmoney <10){
+				$.alert("提现金额不能少于10元！");
+				return false;
+			}
+			if(cashmoney > kcextract){
+				$.alert("提现金额不能超过xx元！");
+				return false;
+			}else{
+				$.alert('提现申请已受理，我们将尽快处理。','提现成功！!', function () {
+					window.location.href="manage.html";
+				});
+			}
+		}
+
+		function amount(th) {
+			var regStrs = [['^0(\\d+)$', '$1'], //禁止录入整数部分两位以上，但首位为0
+				['^\\.$', '0.'], //禁止第一个为点
+				['[^\\d\\.]+$', ''], //禁止录入任何非数字和点
+				['\\.(\\d?)\\.+', '.$1'], //禁止录入两个以上的点
+				['^(\\d+\\.\\d{2}).+', '$1'] //禁止录入小数点后两位以上
+			];
+			for (i = 0; i < regStrs.length; i++) {
+				var reg = new RegExp(regStrs[i][0]);
+					th.value = th.value.replace(reg, regStrs[i][1]);
+				}
+		}	
+ 	</script>
+
+</body>
+</html>

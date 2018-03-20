@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>管理后台</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">  <!--删除默认的苹果工具栏和菜单栏-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> <!-- 控制状态栏显示样式-->
+	<link rel="stylesheet" href="../../css/sm/sm.min.css">
+	<link rel="stylesheet" href="../../css/sm/mystyle.css">
+	<link rel="stylesheet" href="../../css/sm/font-awesome.min.css">
+    <style>
+		.manage_bac{ bottom:-1px;}
+		.text-center em{ font-size:.8rem; font-style:normal; opacity:1;}
+		.mybar{
+			background:#007bc8;
+		}
+		.mybar .title{ color:#fff;}
+		.mybar .icon{ color:#fff;}
+		.bar:after{ height:0;}
+		.manage_contaienr_top {
+    		background: #007bc8;
+		}
+    </style>
+	</head>
+	<body>
+   	<div class="page-group">
+		<div class="page page-current">
+        	<header class="bar bar-nav mybar">
+                <!--<a class="icon icon-left pull-left back"></a>-->
+                <h1 class='title'>管理后台</h1>
+            </header>
+    		
+            <div class="content dashboard native-scroll" >
+                <div class="manage_contaienr_top">
+                	<p class="text-center" style="font-size: .75rem; color:#fff; opacity:0.8">欢迎，小明登录</p>
+               		<p class="text-center" style="font-size: 0.8rem; color:#fff;"><em>基础费率</em>&nbsp;&nbsp;<em>3%</em></p>
+                    <img class="manage_photo" src="../../img/imgs/userPhoto.jpg">
+                    <img class="manage_bac" src="../../img/wcb/manage_bac.png">
+            	</div>
+                <div class=" manage_money">
+                	<div class="row text-center topbox-d3" style="margin-left:0;">
+                    	<div class="col-50" style="width:50%; margin-left:0;">
+                     		<p class="topbox-pp1">32355003.00</p>
+                            <p class="topbox-pp2">当日交易额（元）</p>
+                        </div>
+                        <div class="col-50" style="width:50%; margin-left:0;">
+                            <p class="topbox-pp1">12</p>
+                            <p class="topbox-pp2">交易笔数汇总（笔）</p>
+                        </div>
+					</div>
+				</div>
+                
+                <div style="background: #efeff4; height: 0.5rem;"></div>
+				<div class="content-padded grid-demo" style="margin:0;">
+					<div class="row text-center u-tab shareLoan" style="margin:0;">
+                        <div class="manage_col-33">
+                            <a id="wdzc">
+                                <i><img  src="../../img/wcb/tcash.png"></i>
+                                <p>我的资产</p>
+                            </a>
+                        </div>
+                        <div class="manage_col-33">
+                            <a id="zfm" href="#"><i><img src="../../img/wcb/manage_invite.png"></i>
+                                <p>支付码</p>
+                            </a>
+                        </div>
+                        <div class="manage_col-33">
+                            <a id="zf" href="#"><i><img src="../../img/wcb/zfbpay.png"></i>
+                                <p>支付</p>
+                            </a>
+                        </div>
+
+                        <!--<c:if test="${e_wallet eq '0' }">-->
+                        <div class="manage_col-33">
+                            <a id="bcard" href="#">
+                                <i><img  src="../../img/wcb/manage_bindc.png"></i>
+                                <p>绑定卡片</p>
+                            </a>
+                        </div>
+                        <!--</c:if>-->
+
+                        <!--<div class="manage_col-33">
+                        	<a href="#"><i><img src="../../img/wcb/manage_invite.png"></i>
+                                <p>我的推广</p>
+                            </a>
+                   		</div>-->
+
+					</div>
+                    <div class="row text-center u-tab shareLoan shareLoana" style="margin:0;">
+                        <!--<div class="manage_col-33">
+                        	<a href=""><i><img  src="../../img/wcb/manage_spic.png"></i>
+                                <p>商户信息</p>
+                            </a>
+                   		</div>
+                        <div class="manage_col-33">
+                        	<a href="<%=request.getContextPath()%>/Manage/businesdxgUI?orgCode=${orgnaization.baseOrgCode}&oemid=${oemid}&openid=${openid}">
+                                <i><img src="../../img/wcb/manage_bxg.png"></i>
+                                <p>商户信息修改</p>
+                            </a>
+                   		</div>-->
+                        <!--<div class="manage_col-33">
+                        	<a href="<%=request.getContextPath()%>/Manage/passwordcgUI?loginName=${orgnaization.baseOrgLinkPhone}&openid=${openid}&oemid=${oemid}">
+                                <i><img  src="../../img/wcb/manage_password.png"></i>
+                                <p>修改密码</p>
+                            </a>
+                   		</div>-->
+                        <div class="manage_col-33">
+                            <a id="ls" href="#"><i><img src="../../img/wcb/manage_lpic.png"></i>
+                                <p>流水查询</p>
+                            </a>
+                        </div>
+                        <div class="manage_col-33">
+                            <a id="fr" href="#"><i><img src="../../img/wcb/manage_share.png"></i>
+                                <p>分润查询</p>
+                            </a>
+                        </div>
+                        <div class="manage_col-33">
+                            <a id="te" href="#"><i><img src="../../img/wcb/sc_up.png"></i>
+                                <p>提额申请</p>
+                            </a>
+                        </div>
+                        <div class="manage_col-33">
+                            <a href="#"><i><img src="../../img/wcb/detailfy.png"></i>
+                                <p>返佣明细</p>
+                            </a>
+                        </div>
+
+					</div>
+                    <div class="row text-center u-tab shareLoan shareLoana" style="margin:0;">
+                    	<!--<c:if test="${e_wallet eq '1' }">-->
+
+                        <div class="manage_col-33">
+                        	<a id="tx" href="#"><i><img src="../../img/wcb/tcash.png"></i>
+                                <p>提现</p>
+                            </a>
+                   		</div>
+                        <div class="manage_col-33">
+                            <a href="#"><i><img  src="../../img/wcb/tcash.png"></i>
+                                <p>总资产</p>
+                            </a>
+                        </div>
+                        <!--</c:if>-->
+					</div>
+                    <!--<c:if test="${tg_on_off eq '0' }">-->
+                    <div class="row text-center u-tab shareLoan " style="margin:0;">
+						<!--<div class="manage_col-33">
+                        	<a href="<%=request.getContextPath()%>/Manage/TGED?orgCode=${orgnaization.baseOrgCode}&oemid=${oemid}&openid=${openid}">
+                                <i><img src="../../img/wcb/moneyed.png"></i>
+                                <p>推广包额度</p>
+                            </a>
+                   		</div>-->
+
+					</div>
+                    <!--</c:if>-->
+                    
+                    <!--<%&#45;&#45;<div class="row text-center u-tab shareLoan" style="margin:0;">
+						<div class="manage_col-33">
+                        	<a href="<%=request.getContextPath()%>/Manage/sqUI?orgCode=${orgnaization.baseOrgCode}&oemid=${oemid}&openid=${openid}">
+                                <i><img src="../../img/wcb/moneyed.png"></i>
+                                <p>升迁</p>
+                            </a>
+                   		</div>
+                        <div class="manage_col-33">
+                        	<a href="<%=request.getContextPath()%>/Manage/uploadUI?orgCode=${orgnaization.baseOrgCode}&oemid=${oemid}&openid=${openid}">
+                                <i><img src="../../img/wcb/detailfy.png"></i>
+                                <p>完善信息</p>
+                            </a>
+                   		</div>
+					</div>&#45;&#45;%>-->
+                    
+                    <div class="content-block"></div>
+				</div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../js/sm/jquery-3.1.min.js"></script>
+    <script type="text/javascript" src="../../js/sm/mypublic.js"></script>
+    <script type="text/javascript" src="../../js/sm/sm.min.js"></script>
+    <script>
+        $('#wdzc').click(function () {
+            window.location. href="shareLoan.html"
+            $.showIndicator();
+        })
+        $('#zfm').click(function () {
+            window.location. href="../qrscan/zfcode.html"
+            $.showIndicator();
+        })
+        $('#zf').click(function () {
+            window.location. href="../payment/zpay.html"
+            $.showIndicator();
+        })
+        $('#bcard').click(function () {
+            window.location. href="bindCard.html"
+            $.showIndicator();
+        })
+        $('#ls').click(function () {
+            window.location. href="cashRecharge.html"
+            $.showIndicator();
+        })
+        $('#fr').click(function () {
+            window.location. href="frun.html"
+            $.showIndicator();
+        })
+        $('#te').click(function () {
+            window.location. href="tedu.html"
+            $.showIndicator();
+        })
+        $('#fy').click(function () {
+            window.location. href="frun.html"
+            $.showIndicator();
+        })
+        $('#tx').click(function () {
+            window.location. href=" txian.html"
+            $.showIndicator();
+        })
+
+
+    </script>
+</body>
+</html>

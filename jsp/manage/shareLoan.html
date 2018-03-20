@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>我的资产</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--删除默认的苹果工具栏和菜单栏-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 控制状态栏显示样式-->
+    <link rel="stylesheet" href="../../css/sm/sm.min.css">
+    <link rel="stylesheet" href="../../css/sm/mystyle.css">
+    <style>
+	/**/
+	.bar{ background:#0368b1; }
+	.title{color:#fff;}
+    .bar .icon{ color:#fff;}
+	.bar:after{ height:0;}
+    </style>
+</head>
+
+<body>
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav">
+                <a class="icon icon-left pull-left" onclick="javascript:history.back(-1);"></a>
+                <h1 class="title">我的资产</h1>
+            </header>
+           
+            <!-- 这里是页面内容区 -->
+            <div class="content">
+            	<div class="shareloanmain shareloan-top">
+                	<dl>
+                    	<dd>贷款余额（元）</dd>
+                    	<dt>89999.00</dt>
+                    </dl>
+                </div>
+
+				<div class="shareloan-ct">
+                	<ul class="shareloanmain" style=" background:#0364a8; ">
+                       <li onclick="cz()">充值</li>
+                  		<li>提额</li>  
+                    </ul>
+                </div>
+                 
+                    <div class="list-block myvoucher">
+                        <ul>
+                        	<li id="loanRecharge1" class="item-content item-link item-leftjj">
+                                <div class="item-media onlinexqimg"><img src="../../img/wcb/loan_recharge.png"></div>
+                                <div class="item-inner">
+                                    <div class="item-title sharemetail publicjj">充值流水明细</div>
+                                    <div class="item-after"></div>
+                                </div>
+                            </li>
+                            <li id="loanRecharge2" class="item-content item-link item-leftjj">
+                                <div class="item-media onlinexqimg"><img src="../../img/wcb/loan_cash.png"></div>
+                                <div class="item-inner">
+                                    <div class="item-title sharemetail publicjj">提现流水明细</div>
+                                    <div class="item-after"></div>
+                                </div>
+                            </li>
+                            <li id="loanRecharge3" class="item-content item-link item-leftjj">
+                                <div class="item-media onlinexqimg"><img src="../../img/wcb/loan_profit.png"></div>
+                                <div class="item-inner">
+                                    <div class="item-title sharemetail publicjj">分润收益明细</div>
+                                    <div class="item-after"></div>
+                                </div>
+                            </li>
+                             <li id="loanRecharge4" class="item-content item-link item-leftjj">
+                                <div class="item-media onlinexqimg"><img src="../../img/wcb/loan_cost.png"></div>
+                                <div class="item-inner">
+                                    <div class="item-title sharemetail publicjj">增值服务费扣款明细</div>
+                                    <div class="item-after"></div>
+                                </div>
+                            </li>
+                    	</ul>
+                     
+					</div>                
+            </div>
+            
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/sm/jquery-3.1.min.js"></script>
+    <script type="text/javascript" src="../../js/sm/mypublic.js"></script>
+    <script type="text/javascript" src="../../js/sm/sm.min.js"></script>
+    <script>
+        var loanRecharge1 = $("#loanRecharge1"),
+            loanRecharge2 =  $("#loanRecharge2"),
+            loanRecharge3 =  $("#loanRecharge3"),
+            loanRecharge4 =  $("#loanRecharge4");
+        loanRecharge1.click(function () {
+            window.location.href="loanRecharge.html";
+        })
+        loanRecharge2.click(function () {
+            window.location.href="cashRecharge.html";
+        })
+        loanRecharge4.click(function () {
+            window.location.href="zzfw.html";
+        })
+        function cz() {
+            window.location.href="quickPayment.html"
+        }
+    </script>
+
+</body>
+</html>

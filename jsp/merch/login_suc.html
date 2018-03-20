@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>登录成功</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">  <!--删除默认的苹果工具栏和菜单栏-->
+   		<meta name="apple-mobile-web-app-status-bar-style" content="black"> <!-- 控制状态栏显示样式-->
+        <!--禁止拨打电话-->
+    	<meta name="format-detection" content="telephone=no" />
+      	<link rel="stylesheet" href="../../css/sm/sm.min.css">
+		<link rel="stylesheet" href="../../css/sm/mystyle.css">
+		<style>.bar{ background:#fff;}</style>
+  	</head>
+<body>
+	<div class="page-group">
+		<div class="page page-current">
+        	<header class="bar bar-nav">
+               <!-- <button class="button button-link button-nav onClick="reford()" pull-right" >关闭&nbsp;&nbsp;</button>-->
+                <h1 class='title'>登录成功</h1>
+            </header>
+            <div class="content">
+                    <div class="merch_success_container"  style="background:#fff;">
+                        <span class="merch_success_top"><img src="../../img/wcb/wcb_success.png"></span>
+                        <em>感谢您的登录</em>
+                        <span style="height:.3rem;"></span>
+                    </div>
+                    
+                    <div class="content-block">
+                        <div class="row">
+                            <div class="col-100"><button onClick="reford()" type="button" class="button button-block button-fill button-big "> 完成</button></div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div> 
+        
+	<script type="text/javascript" src="../../js/sm/jquery-3.1.min.js"></script>
+	<script type="text/javascript" src="../../js/sm/mypublic.js"></script>
+    <script type="text/javascript" src="../../js/sm/sm.min.js"></script>
+	<script type="text/javascript" src="../../js/wechat/layer.m.js"></script>
+	<script type="text/javascript" src="../../js/wechat/hideshare_and_toolbar.js"></script>
+
+	<script type="text/javascript">
+		function onBridgeReady(){
+			 WeixinJSBridge.call('hideOptionMenu');
+			}
+
+			if (typeof WeixinJSBridge == "undefined"){
+			    if( document.addEventListener ){
+			        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+			    }else if (document.attachEvent){
+			        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+			        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+			    }
+			}else{
+			    onBridgeReady();
+			}
+		
+		
+		  //setTimeout(reford,"3000");//二秒后执行
+		  function reford(){
+			    window.location.href="../manage/managenew.html"
+		        /*try{
+		            WeixinJSBridge.call("closeWindow");
+		        }catch(e){};*/
+		   }
+	</script>
+	</body>
+</html>

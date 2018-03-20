@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <title></title>
+   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="css/main.css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="css/wxzf.css">
+
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        //出现浮动层
+        $(".ljzf_but").click(function(){
+            $(".ftc_wzsf").show();
+            });
+        //关闭浮动
+        $(".close").click(function(){
+            $(".ftc_wzsf").hide();
+            });
+            //数字显示隐藏
+            $(".xiaq_tb").click(function(){
+            $(".numb_box").slideUp(500);
+            });
+            $(".mm_box").click(function(){
+            $(".numb_box").slideDown(500);
+            });
+            //----
+            var i = 0;
+            $(".nub_ggg li a").click(function(){
+                i++
+                if(i<6){
+                    $(".mm_box li").eq(i-1).addClass("mmdd");
+                    }else{
+                        $(".mm_box li").eq(i-1).addClass("mmdd"); 
+                        setTimeout(function(){
+                        location.href="zfcg.html"; 
+                        },500);
+                        //window.document.location="cg.html"
+                 } 
+            });
+            
+            $(".nub_ggg li .del").click(function(){
+                
+                if(i>0){
+                    i--
+                    $(".mm_box li").eq(i).removeClass("mmdd");
+                    i==0;
+                    }
+                //alert(i);
+                
+                
+                 
+            });
+            
+         
+    });
+    </script>  
+</head>
+<body style="background:#f5f5f5;">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+   <div class="navbar-header-img">
+      <a class="navbar-brand-img" href="#"><img src="imgs/dc-return1.png"></a>
+   </div>
+   <div class="jdxx">
+   	<a>确认交易</a>
+   </div>      
+</nav>
+
+<div class="container-fluid grcontainer_main">
+	<div class="qrzf_container">
+    	<div class="qrzf_skf">
+        	<ul>
+            	<li>收款方</li>
+               	<img class="img-responsive" width="100"  src="imgs/logo.png">
+          	</ul>
+            <dl>
+                <dd>￥&nbsp;<a style="font-size:36px; color:#1e2426; text-decoration:none;">500.09</a>&nbsp;元</dd>
+            </dl>
+     
+            <p><a>*安全提醒&nbsp;</a>我们尽快为您开通开通后会发送公众号
+通知请注意查收</p>
+        </div>
+        
+        <div style=" text-align:center; padding: 30px 0;" >
+        	<button type="button" class="btn btn-default btn-lg qrzf_ljzf" ><a href="javascript:void(0);" class="ljzf_but" >立即支付</a></button>
+     	</div>
+        
+   </div>  
+</div>
+
+<!--浮动层-->
+<div class="ftc_wzsf">
+  <div class="srzfmm_box">
+    <div class="qsrzfmm_bt clear_wl"> <img src="imgs/fr_sel.png" class="tx close fl_sel" > <img src="imgs/miao.png" class="tx fl" ><span class="fl">请输入支付密码</span> </div>
+    <div class="zfmmxx_shop">
+      <div class="mz">秒到商城</div>
+      <div class="wxzf_price">￥500.09</div>
+    </div>
+    <a href="cg.html" class="blank_yh"> <img src="imgs/miaod.png" class="fl"  ><span class="fl ml5">秒到商城</span> <img src="pic/jftc_09.jpg" class="fr"></a>
+    <ul class="mm_box">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="numb_box">
+    <div class="xiaq_tb"> <img src="pic/jftc_14.jpg" height="10"> </div>
+    <ul class="nub_ggg">
+      <li><a href="javascript:void(0);">1</a></li>
+      <li><a href="javascript:void(0);" class="zj_x">2</a></li>
+      <li><a href="javascript:void(0);">3</a></li>
+      <li><a href="javascript:void(0);">4</a></li>
+      <li><a href="javascript:void(0);" class="zj_x">5</a></li>
+      <li><a href="javascript:void(0);">6</a></li>
+      <li><a href="javascript:void(0);">7</a></li>
+      <li><a href="javascript:void(0);" class="zj_x">8</a></li>
+      <li><a href="javascript:void(0);">9</a></li>
+      <li><span></span></li>
+      <li><a href="javascript:void(0);" class="zj_x">0</a></li>
+      <li><span  class="del" > <img src="pic/jftc_18.jpg"   ></span></li>
+    </ul>
+  </div>
+  <div class="hbbj"></div>
+</div>
+
+
+
+
+
+
+</body>
+</html>

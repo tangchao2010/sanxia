@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>收款码</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">  <!--删除默认的苹果工具栏和菜单栏-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> <!-- 控制状态栏显示样式-->
+	<link rel="stylesheet" href="../../css/sm/sm.min.css">
+	<link rel="stylesheet" href="../../css/sm/mystyle.css">
+	<link rel="stylesheet" href="../../css/sm/font-awesome.min.css">
+    <style>
+		.page, .page-group{
+			background:#0c77c5;
+		}
+		.manage_bac{ bottom:-1px;}
+		.text-center em{ font-size:.8rem; font-style:normal; opacity:1;}
+		.bar{
+			background:none;
+		}
+		.mybar .title{ color:#fff;}
+		.mybar .icon{ color:#fff;}
+		.bar:after{ height:0;}
+		.manage_contaienr_top {
+    		background: #007bc8;
+		}
+		.qrcodebottom{
+			margin-top: 1.6rem;		
+		}
+		.dashboard dl{
+			text-align:center;
+			color:#fff;
+			font-size:.7rem;
+			padding-top:.5rem;
+		}
+		.dashboard dd{
+			margin-left:0;	
+		}
+		.dashboard dd i{
+			background:#0a5f9e;
+			padding:.3rem 1.5rem;
+			border-radius:1.2rem;
+			font-size:.8rem;
+			font-style:normal;
+		}
+		.dashboard dd:nth-child(1){
+			padding-bottom: .75rem;		
+		} 
+		.dashboard{
+			background: url(../../img/wcb/skewm.png) no-repeat;
+			background-position:center;
+			background-size:cover;
+		}
+		.qrcodemid{	
+			margin-top:10%;
+		}
+		.qrcodemid img{
+			display:block;
+			margin:auto;
+			width:65%;	
+			border-radius:.6rem;
+			background:#fff;
+		}
+		.qrcodelink{
+			width:100%;	
+			height: 2.2rem;	
+			display:block;
+		}
+		.qrcodelink a{
+			color:#fff;
+			line-height:2.2rem;
+			font-size: .7rem;
+			text-align:center;
+			width:50%;
+		}
+		.qrcodelink a:nth-child(1):before{
+			content: " ";
+			width: 1px;
+			height: .75rem;
+			top:.6rem;
+			border-right: 1px solid #fff;
+			position: absolute;
+			right: 50%;
+		}
+		.mybar{ padding-left: .75rem; padding-right:.75rem;}
+		.mybar a{ color:#fff; line-height:2.2rem; font-size:.7rem;}
+    </style>
+	</head>
+	<body >
+        <div class="page-group">
+            <div class="page page-current">
+               <!-- <header class="bar bar-nav mybar">
+                	<h1 class="title">收款码</h1>
+                </header>-->
+                <div class="content dashboard native-scroll" >
+                	<div class="qrcodelink">
+                        <a class="pull-left"  href="../manage/cashRecharge.html">交易流水</a>
+                        <a class="pull-right " href="../manage/managenew.html">管理后台</a>
+                    </div>
+                    <dl>
+                        <dd><i>${mrchname}</i></dd>
+                        <dd>欢迎使用支付宝、微信扫码支付</dd>
+                    </dl>
+                    
+                   <div class="qrcodemid">
+                        <!--<img src="../../QRCode/qrview?qrcode=${qrcode}" />-->
+                        <img src="../../img/wcb/zjewm.jpg" />
+                   </div>
+                </div>
+            </div>        
+		</div>            
+	</body>
+</html>
